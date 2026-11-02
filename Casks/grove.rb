@@ -39,5 +39,9 @@ cask "grove" do
   zsh_completion "completions/grove.zsh"
   fish_completion "completions/grove.fish"
 
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{staged_path}}/grove"]
+  end
+
   # No zap stanza required
 end
